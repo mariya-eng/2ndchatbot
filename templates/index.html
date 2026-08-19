@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datum — AI Data Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<!-- ============ AUTH SCREEN ============ -->
+<div id="auth-screen" class="auth-screen">
+  <div class="auth-card">
+    <div class="brand">
+      <span class="brand-mark">◆</span>
+      <span class="brand-name">Datum</span>
+    </div>
+    <p class="auth-tag">An AI agent that reads your files and answers from them. Nobody else's data. Just yours.</p>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-mode="login">Log in</button>
+      <button class="auth-tab" data-mode="signup">Sign up</button>
+    </div>
+
+    <form id="auth-form">
+      <label class="field-label">Email</label>
+      <input type="email" id="auth-email" required placeholder="you@example.com">
+      <label class="field-label">Password</label>
+      <input type="password" id="auth-password" required placeholder="••••••••" minlength="6">
+      <button type="submit" class="btn-primary" id="auth-submit">Log in</button>
+    </form>
+    <button id="google-signin" class="btn-google">Continue with Google</button>
+    <p class="auth-error" id="auth-error"></p>
+  </div>
+</div>
+
+<!-- ============ APP SCREEN ============ -->
+<div id="app-screen" class="app-screen hidden">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">◆</span>
+      <span class="brand-name">Datum</span>
+    </div>
+
+    <div class="user-pill">
+      <span id="user-email" class="user-email"></span>
+      <button id="signout-btn" class="link-btn">Sign out</button>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Upload data</h3>
+      <label for="file-input" class="dropzone" id="dropzone">
+        <span class="dropzone-icon">⇧</span>
+        <span class="dropzone-text">Drop a CSV, XLSX or JSON<br><span class="dropzone-sub">or click to browse</span></span>
+      </label>
+      <input type="file" id="file-input" accept=".csv,.xls,.xlsx,.json" hidden>
+      <div id="upload-status" class="upload-status"></div>
+    </div>
+
+    <div class="sidebar-section grow">
+      <h3>Your files</h3>
+      <ul id="file-list" class="file-list"></ul>
+      <p class="empty-note" id="file-empty">No files yet — upload one above.</p>
+    </div>
+
+    <div class="scope-note">
+      <span class="scope-dot"></span>
+      Scoped to your account only — other users can never see this list.
+    </div>
+  </aside>
+
+  <main class="chat-main">
+    <header class="schema-strip" id="schema-strip">
+      <span class="schema-label">Context:</span>
+      <span id="schema-chips" class="schema-chips">All uploaded files</span>
+    </header>
+
+    <div id="chat-log" class="chat-log">
+      <div class="chat-empty" id="chat-empty">
+        <p>Ask a question about your data — or anything else.</p>
+        <p class="chat-empty-sub">Try: "How many rows are in my file?" or "Summarize the columns."</p>
+      </div>
+    </div>
+
+    <form id="chat-form" class="chat-input-row">
+      <input type="text" id="chat-input" placeholder="Ask about your uploaded data…" autocomplete="off">
+      <button type="submit" class="btn-send" id="chat-send">Send</button>
+    </form>
+  </main>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="/static/js/firebase-config.js"></script>
+<script src="/static/js/auth.js"></script>
+<script src="/static/js/app.js"></script>
+</body>
+</html>
